@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
-    private final  SpringDadosCadastroRepository springDadosCadastroRepository;
+    private final SpringDadosCadastroRepository springDadosCadastroRepository;
 
     public DadosCadastroRepository(SpringDadosCadastroRepository springDadosCadastroRepository) {
         this.springDadosCadastroRepository = springDadosCadastroRepository;
@@ -19,7 +19,7 @@ public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
 
     @Override
     public void salvar(DadosCadastro dadosCadastro) {
-        DadosCadastroEntitiy dadosCadastroEntitiy ;
+        DadosCadastroEntitiy dadosCadastroEntitiy;
         dadosCadastroEntitiy = new DadosCadastroEntitiy(dadosCadastro);
         springDadosCadastroRepository.save(dadosCadastroEntitiy);
 
@@ -34,9 +34,8 @@ public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
 
     @Override
     public DadosCadastro buscarcadastroId(Long id) {
-        Optional<DadosCadastroEntitiy> dadosCadastro = springDadosCadastroRepository.findById(id);
-        //Optional<DadosCadastro> = springDadosCadastroRepository.findById(id);
+        Optional<DadosCadastroEntitiy> dadosCadastroEntitiy = springDadosCadastroRepository.findById(id);
 
-        return dadosCadastro.get();
+        return dadosCadastroEntitiy.get().toDadosCadastro();
     }
 }

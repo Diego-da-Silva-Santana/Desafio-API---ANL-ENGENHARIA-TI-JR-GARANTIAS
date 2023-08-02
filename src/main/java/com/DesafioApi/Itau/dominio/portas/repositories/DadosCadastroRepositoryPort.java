@@ -11,7 +11,7 @@ public interface DadosCadastroRepositoryPort {
     void salvar(DadosCadastro dadosCadastro);
     List<DadosCadastro> buscarTodosCadastro();
 
-   Optional<DadosCadastro> buscarcadastroId(Long id);
+   DadosCadastro buscarcadastroId(Long id);
 
 
 }

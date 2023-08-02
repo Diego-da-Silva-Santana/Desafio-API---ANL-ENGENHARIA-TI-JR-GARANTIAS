@@ -35,9 +35,10 @@ public class DadosCadastroServiceImpl implements DadosCadastroServicePort {
 
     @Override
     public DadosCadastroDTO buscarcadastroId(Long id) {
-      Optional<DadosCadastro> dadosCadastro = ;
+      DadosCadastro dadosCadastro = dadosCadastroRepositoryPort.buscarcadastroId(id);
+      DadosCadastroDTO dadosCadastroDTO = dadosCadastro.toDadosCadastroDTO();
 
 
-        return Optional.ofNullable(dadosCadastro);
+        return dadosCadastroDTO;
     }
 }
