@@ -13,5 +13,7 @@ public interface DadosCadastroServicePort {
 
     public DadosCadastroDTO buscarcadastroId(Long id);
 
+    void deletarCadastro(Long id);
+
 
 }

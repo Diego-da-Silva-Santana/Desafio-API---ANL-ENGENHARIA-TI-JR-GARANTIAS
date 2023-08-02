@@ -12,6 +12,7 @@ public interface DadosCadastroRepositoryPort {
     List<DadosCadastro> buscarTodosCadastro();
 
    DadosCadastro buscarcadastroId(Long id);
+   void deletarCadastro(Long id);
 
 
 }

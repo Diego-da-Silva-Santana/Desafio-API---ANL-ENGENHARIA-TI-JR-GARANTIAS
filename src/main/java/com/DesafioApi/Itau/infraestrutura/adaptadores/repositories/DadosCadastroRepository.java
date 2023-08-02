@@ -38,4 +38,9 @@ public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
 
         return dadosCadastroEntitiy.get().toDadosCadastro();
     }
+
+    @Override
+    public void deletarCadastro(Long id) {
+      springDadosCadastroRepository.deleteById(id);
+    }
 }

@@ -41,4 +41,9 @@ public class DadosCadastroServiceImpl implements DadosCadastroServicePort {
 
         return dadosCadastroDTO;
     }
+
+    @Override
+    public void deletarCadastro(Long id) {
+        dadosCadastroRepositoryPort.deletarCadastro(id);
+    }
 }

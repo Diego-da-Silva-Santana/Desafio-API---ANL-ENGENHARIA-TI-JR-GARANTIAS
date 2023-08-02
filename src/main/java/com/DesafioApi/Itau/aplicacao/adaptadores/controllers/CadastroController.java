@@ -1,6 +1,5 @@
 package com.DesafioApi.Itau.aplicacao.adaptadores.controllers;
 
-import com.DesafioApi.Itau.dominio.DadosCadastro;
 import com.DesafioApi.Itau.dominio.dtos.DadosCadastroDTO;
 import com.DesafioApi.Itau.dominio.portas.interfaces.DadosCadastroServicePort;
 import org.springframework.http.HttpStatus;
@@ -8,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("cadastro")
@@ -39,6 +37,15 @@ public class CadastroController {
 
         return ResponseEntity.ok().body(dadosCadastroDTO);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletarCadastro(@PathVariable Long id){
+        dadosCadastroServicePort.deletarCadastro(id);
+        return ResponseEntity.noContent().build();
+
+    }
+
+
 
 
 
