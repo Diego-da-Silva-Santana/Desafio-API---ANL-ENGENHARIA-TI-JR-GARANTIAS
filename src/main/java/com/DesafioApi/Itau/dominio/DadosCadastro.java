@@ -11,15 +11,14 @@ public class DadosCadastro {
     public DadosCadastro() {
     }
 
-    public DadosCadastro(String nome,
-                         String sobreNome,
-                         Integer idade,
-                         String pais) {
+    public DadosCadastro(String nome, String sobreNome, Integer idade, String pais) {
         this.nome = nome;
         this.sobreNome = sobreNome;
         this.idade = idade;
-        pais = pais;
+        this.pais = pais;
     }
+
+
 
     public DadosCadastro(DadosCadastroDTO dadosCadastroDTO) {
         this.nome = dadosCadastroDTO.getNome();
@@ -42,5 +41,9 @@ public class DadosCadastro {
 
     public String getPais() {
         return pais;
+    }
+
+    public DadosCadastroDTO toDadosCadastroDTO(){
+        return new DadosCadastroDTO(nome,sobreNome,idade,pais);
     }
 }

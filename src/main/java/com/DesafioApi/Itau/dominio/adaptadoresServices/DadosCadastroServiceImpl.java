@@ -4,6 +4,11 @@ import com.DesafioApi.Itau.dominio.DadosCadastro;
 import com.DesafioApi.Itau.dominio.dtos.DadosCadastroDTO;
 import com.DesafioApi.Itau.dominio.portas.interfaces.DadosCadastroServicePort;
 import com.DesafioApi.Itau.dominio.portas.repositories.DadosCadastroRepositoryPort;
+import com.DesafioApi.Itau.infraestrutura.adaptadores.repositories.SpringDadosCadastroRepository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class DadosCadastroServiceImpl implements DadosCadastroServicePort {
 
@@ -19,7 +24,20 @@ public class DadosCadastroServiceImpl implements DadosCadastroServicePort {
         this.dadosCadastroRepositoryPort.salvar(dadosCadastro);
 
 
+    }
+
+    @Override
+    public List<DadosCadastroDTO> buscarCadastros() {
+        List<DadosCadastro> dadosCadastros = this.dadosCadastroRepositoryPort.buscarTodosCadastro();
+        List<DadosCadastroDTO> dadosCadastroDTOS = dadosCadastros.stream().map(DadosCadastro::toDadosCadastroDTO).collect(Collectors.toList());
+        return dadosCadastroDTOS;
+    }
+
+    @Override
+    public DadosCadastroDTO buscarcadastroId(Long id) {
+      Optional<DadosCadastro> dadosCadastro = ;
 
 
+        return Optional.ofNullable(dadosCadastro);
     }
 }

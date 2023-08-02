@@ -17,7 +17,7 @@ public class DadosCadastroDTO {
         this.nome = nome;
         this.sobreNome = sobreNome;
         this.idade = idade;
-        pais = pais;
+        this.pais = pais;
     }
 
     public String getNome() {

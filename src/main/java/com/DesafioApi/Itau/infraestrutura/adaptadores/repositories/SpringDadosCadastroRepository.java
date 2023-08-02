@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 @Repository
-public interface SpringDadosCadastroRepository extends JpaRepository<DadosCadastroEntitiy, UUID> {
+public interface SpringDadosCadastroRepository extends JpaRepository<DadosCadastroEntitiy, Long> {
 }

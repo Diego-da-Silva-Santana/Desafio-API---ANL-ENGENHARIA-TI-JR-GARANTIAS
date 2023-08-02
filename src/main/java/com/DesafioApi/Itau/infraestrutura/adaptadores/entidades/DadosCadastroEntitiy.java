@@ -10,7 +10,7 @@ public class DadosCadastroEntitiy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID codigo;
+    private Long codigo;
     private  String nome;
     private  String sobreNome;
     private Integer idade;
