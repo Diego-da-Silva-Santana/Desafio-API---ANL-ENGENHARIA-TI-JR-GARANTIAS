@@ -3,6 +3,7 @@ package com.DesafioApi.Itau.infraestrutura.adaptadores.repositories;
 import com.DesafioApi.Itau.dominio.DadosCadastro;
 import com.DesafioApi.Itau.dominio.portas.repositories.DadosCadastroRepositoryPort;
 import com.DesafioApi.Itau.infraestrutura.adaptadores.entidades.DadosCadastroEntitiy;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -41,6 +42,13 @@ public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
 
     @Override
     public void deletarCadastro(Long id) {
-      springDadosCadastroRepository.deleteById(id);
+        springDadosCadastroRepository.deleteById(id);
+    }
+
+    @Override
+    public DadosCadastro atualizarDados(Long id) {
+        Optional<DadosCadastroEntitiy> dadosCadastroEntitiy = springDadosCadastroRepository.findById(id);
+
+        return dadosCadastroEntitiy.get().toDadosCadastro();
     }
 }

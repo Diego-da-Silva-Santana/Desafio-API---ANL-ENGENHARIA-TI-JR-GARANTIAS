@@ -3,8 +3,8 @@ package com.DesafioApi.Itau.dominio;
 import com.DesafioApi.Itau.dominio.dtos.DadosCadastroDTO;
 
 public class DadosCadastro {
-    private  String nome;
-    private  String sobreNome;
+    private String nome;
+    private String sobreNome;
     private Integer idade;
     private String pais;
 
@@ -17,8 +17,6 @@ public class DadosCadastro {
         this.idade = idade;
         this.pais = pais;
     }
-
-
 
     public DadosCadastro(DadosCadastroDTO dadosCadastroDTO) {
         this.nome = dadosCadastroDTO.getNome();
@@ -43,7 +41,7 @@ public class DadosCadastro {
         return pais;
     }
 
-    public DadosCadastroDTO toDadosCadastroDTO(){
-        return new DadosCadastroDTO(nome,sobreNome,idade,pais);
+    public DadosCadastroDTO toDadosCadastroDTO() {
+        return new DadosCadastroDTO(nome, sobreNome, idade, pais);
     }
 }

@@ -1,9 +1,8 @@
 package com.DesafioApi.Itau.dominio.dtos;
 
 public class DadosCadastroDTO {
-
-    private  String nome;
-    private  String sobreNome;
+    private String nome;
+    private String sobreNome;
     private Integer idade;
     private String pais;
 
