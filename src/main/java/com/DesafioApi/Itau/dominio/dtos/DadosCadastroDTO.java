@@ -34,4 +34,6 @@ public class DadosCadastroDTO {
     public String getPais() {
         return pais;
     }
+
+
 }

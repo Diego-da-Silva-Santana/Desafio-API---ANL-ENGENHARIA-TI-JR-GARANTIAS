@@ -6,7 +6,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,7 +23,7 @@ public class CadastroController {
     @PostMapping
     public ResponseEntity<DadosCadastroDTO> criarCadastro(@RequestBody DadosCadastroDTO dadosCadastroDTO) {
         dadosCadastroServicePort.criarCadastro(dadosCadastroDTO);
-
+        //URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dadosCadastroServicePort.criarCadastro(dadosCadastroDTO)()).toUri();
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
