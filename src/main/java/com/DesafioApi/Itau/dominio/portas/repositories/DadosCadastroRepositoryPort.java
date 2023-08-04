@@ -1,6 +1,7 @@
 package com.DesafioApi.Itau.dominio.portas.repositories;
 
 import com.DesafioApi.Itau.dominio.DadosCadastro;
+import com.DesafioApi.Itau.dominio.dtos.DadosCadastroDTO;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface DadosCadastroRepositoryPort {
 
     void deletarCadastro(Long id);
 
-  //  DadosCadastro atualizarDados(Long id);
+    DadosCadastro atualizarDados(Long id, DadosCadastroDTO dadosCadastroDTO);
 
 
 }

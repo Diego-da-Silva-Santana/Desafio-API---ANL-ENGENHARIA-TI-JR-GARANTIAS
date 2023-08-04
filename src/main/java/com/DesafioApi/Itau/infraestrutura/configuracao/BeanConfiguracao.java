@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfiguracao {
     @Bean
-    DadosCadastroServicePort dadosCadastroService(DadosCadastroRepositoryPort dadosCadastroRepositoryPort){
+    DadosCadastroServicePort dadosCadastroService(DadosCadastroRepositoryPort dadosCadastroRepositoryPort) {
         return new DadosCadastroServiceImpl(dadosCadastroRepositoryPort);
     }
 }

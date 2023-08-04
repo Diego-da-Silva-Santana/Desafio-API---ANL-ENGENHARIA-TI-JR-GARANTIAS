@@ -1,6 +1,7 @@
 package com.DesafioApi.Itau.infraestrutura.adaptadores.entidades;
 
 import com.DesafioApi.Itau.dominio.DadosCadastro;
+import com.DesafioApi.Itau.dominio.dtos.DadosCadastroDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,9 +17,6 @@ public class DadosCadastroEntitiy {
 
     public DadosCadastroEntitiy() {
     }
-    public Long getId(){
-        return codigo;
-    }
 
     public DadosCadastroEntitiy(DadosCadastro dadosCadastro) {
         this.nome = dadosCadastro.getNome();
@@ -29,5 +27,24 @@ public class DadosCadastroEntitiy {
 
     public DadosCadastro toDadosCadastro() {
         return new DadosCadastro(this.nome, this.sobrenome, this.idade, this.pais);
+    }
+
+    public void atualizarDadosCadastro(DadosCadastroDTO dadosCadastroDTO) {
+
+        if (dadosCadastroDTO.getNome() != null) {
+            this.nome = dadosCadastroDTO.getNome();
+        }
+
+        if (dadosCadastroDTO.getsobrenome() != null) {
+            this.sobrenome = dadosCadastroDTO.getsobrenome();
+        }
+
+        if (dadosCadastroDTO.getIdade() != null) {
+            this.idade = dadosCadastroDTO.getIdade();
+        }
+
+        if (dadosCadastroDTO.getPais() != null) {
+            this.pais = dadosCadastroDTO.getPais();
+        }
     }
 }

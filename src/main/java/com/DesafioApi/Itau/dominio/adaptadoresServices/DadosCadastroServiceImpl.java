@@ -2,7 +2,6 @@ package com.DesafioApi.Itau.dominio.adaptadoresServices;
 
 import com.DesafioApi.Itau.dominio.DadosCadastro;
 import com.DesafioApi.Itau.dominio.dtos.DadosCadastroDTO;
-import com.DesafioApi.Itau.dominio.dtos.DadosCadastroDTOPatch;
 import com.DesafioApi.Itau.dominio.portas.interfaces.DadosCadastroServicePort;
 import com.DesafioApi.Itau.dominio.portas.repositories.DadosCadastroRepositoryPort;
 
@@ -27,6 +26,7 @@ public class DadosCadastroServiceImpl implements DadosCadastroServicePort {
     public List<DadosCadastroDTO> buscarCadastros() {
         List<DadosCadastro> dadosCadastros = this.dadosCadastroRepositoryPort.buscarTodosCadastro();
         List<DadosCadastroDTO> dadosCadastroDTOS = dadosCadastros.stream().map(DadosCadastro::toDadosCadastroDTO).collect(Collectors.toList());
+
         return dadosCadastroDTOS;
     }
 
@@ -34,6 +34,7 @@ public class DadosCadastroServiceImpl implements DadosCadastroServicePort {
     public DadosCadastroDTO buscarcadastroId(Long id) {
         DadosCadastro dadosCadastro = dadosCadastroRepositoryPort.buscarCadastroId(id);
         DadosCadastroDTO dadosCadastroDTO = dadosCadastro.toDadosCadastroDTO();
+
         return dadosCadastroDTO;
     }
 
@@ -42,13 +43,11 @@ public class DadosCadastroServiceImpl implements DadosCadastroServicePort {
         dadosCadastroRepositoryPort.deletarCadastro(id);
     }
 
-//    @Override
-//    public DadosCadastroDTO atualizarDados(Long id, DadosCadastroDTOPatch dadosCadastroDTOPatch) {
-//
-//      DadosCadastroDTO dadosCadastroDTO = dadosCadastroRepositoryPort.atualizarDados(id).toDadosCadastroDTO();
-//
-//
-//
-//        return dadosCadastroDTO;
-//    }
+    @Override
+    public DadosCadastroDTO atualizarDados(Long id, DadosCadastroDTO dadosCadastroDTO) {
+        DadosCadastro dadosCadastro = dadosCadastroRepositoryPort.atualizarDados(id, dadosCadastroDTO);
+        DadosCadastroDTO cadastroDTO = dadosCadastro.toDadosCadastroDTO();
+
+        return cadastroDTO;
+    }
 }

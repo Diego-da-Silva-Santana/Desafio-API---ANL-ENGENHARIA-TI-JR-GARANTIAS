@@ -1,8 +1,11 @@
 package com.DesafioApi.Itau.infraestrutura.adaptadores.repositories;
 
 import com.DesafioApi.Itau.dominio.DadosCadastro;
+import com.DesafioApi.Itau.dominio.dtos.DadosCadastroDTO;
 import com.DesafioApi.Itau.dominio.portas.repositories.DadosCadastroRepositoryPort;
 import com.DesafioApi.Itau.infraestrutura.adaptadores.entidades.DadosCadastroEntitiy;
+import com.DesafioApi.Itau.infraestrutura.adaptadores.repositories.exceptions.ResourceNotFoundException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,12 +25,12 @@ public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
         DadosCadastroEntitiy dadosCadastroEntitiy;
         dadosCadastroEntitiy = new DadosCadastroEntitiy(dadosCadastro);
         springDadosCadastroRepository.save(dadosCadastroEntitiy);
-
     }
 
     @Override
     public List<DadosCadastro> buscarTodosCadastro() {
         List<DadosCadastroEntitiy> dadosCadastroEntitiys = this.springDadosCadastroRepository.findAll();
+
         return dadosCadastroEntitiys.stream().map(DadosCadastroEntitiy::toDadosCadastro).collect(Collectors.toList());
     }
 
@@ -35,25 +38,29 @@ public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
     public DadosCadastro buscarCadastroId(Long id) {
         Optional<DadosCadastroEntitiy> dadosCadastroEntitiy = this.springDadosCadastroRepository.findById(id);
 
-        if (dadosCadastroEntitiy.isPresent())
-            return dadosCadastroEntitiy.get().toDadosCadastro();
-
-        throw  new RuntimeException("Cadastro não existe na base de dados");
+        return dadosCadastroEntitiy.orElseThrow(() -> new ResourceNotFoundException(id)).toDadosCadastro();
 
     }
 
     @Override
     public void deletarCadastro(Long id) {
-        springDadosCadastroRepository.deleteById(id);
+        try {
+            springDadosCadastroRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+
+            throw new ResourceNotFoundException(id);
+        }
     }
 
+    @Override
+    public DadosCadastro atualizarDados(Long id, DadosCadastroDTO dadosCadastroDTO) {
+        Optional<DadosCadastroEntitiy> possivelDadosCadastroEntitiy = this.springDadosCadastroRepository.findById(id);
+        possivelDadosCadastroEntitiy.isEmpty();
+        DadosCadastroEntitiy dadosCadastroEntitiy = possivelDadosCadastroEntitiy.get();
+        dadosCadastroEntitiy.atualizarDadosCadastro(dadosCadastroDTO);
+        springDadosCadastroRepository.save(dadosCadastroEntitiy);
 
-//    @Override
-//    public DadosCadastroDTO atualizarDados(Long id, DadosCadastroDTOPatch dadosCadastroDTOPatch) {
-//
-//        Optional<DadosCadastroDTO> dadosCadastroDTO = springDadosCadastroRepository.findById(id);
-//
-//
-//        return springDadosCadastroRepository.save(dadosCadastroDTO);
-//    }
+        return dadosCadastroEntitiy.toDadosCadastro();
+
+    }
 }

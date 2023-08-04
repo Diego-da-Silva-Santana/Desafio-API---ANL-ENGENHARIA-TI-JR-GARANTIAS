@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackageClasses = SpringDadosCadastroRepository.class)
 public class ItauApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ItauApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ItauApplication.class, args);
+    }
 
 }
