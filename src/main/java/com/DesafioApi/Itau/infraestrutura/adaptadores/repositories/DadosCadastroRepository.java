@@ -33,8 +33,13 @@ public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
 
     @Override
     public DadosCadastro buscarCadastroId(Long id) {
-        Optional<DadosCadastroEntitiy> dadosCadastroEntitiy = springDadosCadastroRepository.findById(id);
-        return dadosCadastroEntitiy.get().toDadosCadastro();
+        Optional<DadosCadastroEntitiy> dadosCadastroEntitiy = this.springDadosCadastroRepository.findById(id);
+
+        if (dadosCadastroEntitiy.isPresent())
+            return dadosCadastroEntitiy.get().toDadosCadastro();
+
+        throw  new RuntimeException("Cadastro não existe na base de dados");
+
     }
 
     @Override

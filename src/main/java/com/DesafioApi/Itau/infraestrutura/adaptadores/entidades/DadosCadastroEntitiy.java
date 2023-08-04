@@ -22,7 +22,7 @@ public class DadosCadastroEntitiy {
 
     public DadosCadastroEntitiy(DadosCadastro dadosCadastro) {
         this.nome = dadosCadastro.getNome();
-        this.sobrenome = dadosCadastro.getSobreNome();
+        this.sobrenome = dadosCadastro.getSobrenome();
         this.idade = dadosCadastro.getIdade();
         this.pais = dadosCadastro.getPais();
     }
