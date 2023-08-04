@@ -3,7 +3,6 @@ package com.DesafioApi.Itau.infraestrutura.adaptadores.repositories;
 import com.DesafioApi.Itau.dominio.DadosCadastro;
 import com.DesafioApi.Itau.dominio.portas.repositories.DadosCadastroRepositoryPort;
 import com.DesafioApi.Itau.infraestrutura.adaptadores.entidades.DadosCadastroEntitiy;
-import org.aspectj.weaver.ast.Var;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -29,14 +28,12 @@ public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
     @Override
     public List<DadosCadastro> buscarTodosCadastro() {
         List<DadosCadastroEntitiy> dadosCadastroEntitiys = this.springDadosCadastroRepository.findAll();
-
         return dadosCadastroEntitiys.stream().map(DadosCadastroEntitiy::toDadosCadastro).collect(Collectors.toList());
     }
 
     @Override
-    public DadosCadastro buscarcadastroId(Long id) {
+    public DadosCadastro buscarCadastroId(Long id) {
         Optional<DadosCadastroEntitiy> dadosCadastroEntitiy = springDadosCadastroRepository.findById(id);
-
         return dadosCadastroEntitiy.get().toDadosCadastro();
     }
 
@@ -45,10 +42,13 @@ public class DadosCadastroRepository implements DadosCadastroRepositoryPort {
         springDadosCadastroRepository.deleteById(id);
     }
 
-    @Override
-    public DadosCadastro atualizarDados(Long id) {
-        Optional<DadosCadastroEntitiy> dadosCadastroEntitiy = springDadosCadastroRepository.findById(id);
 
-        return dadosCadastroEntitiy.get().toDadosCadastro();
-    }
+//    @Override
+//    public DadosCadastroDTO atualizarDados(Long id, DadosCadastroDTOPatch dadosCadastroDTOPatch) {
+//
+//        Optional<DadosCadastroDTO> dadosCadastroDTO = springDadosCadastroRepository.findById(id);
+//
+//
+//        return springDadosCadastroRepository.save(dadosCadastroDTO);
+//    }
 }

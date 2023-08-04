@@ -16,6 +16,9 @@ public class DadosCadastroEntitiy {
 
     public DadosCadastroEntitiy() {
     }
+    public Long getId(){
+        return codigo;
+    }
 
     public DadosCadastroEntitiy(DadosCadastro dadosCadastro) {
         this.nome = dadosCadastro.getNome();
