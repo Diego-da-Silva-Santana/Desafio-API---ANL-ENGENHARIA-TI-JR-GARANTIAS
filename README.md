@@ -1,2 +1,13 @@
-# Desafio-API---ANL-ENGENHARIA-TI-JR-GARANTIAS
-Repositório API Desafio para vaga - Nível Júnior - Backend - Itau
+# Desafio Itaú
+## Sobre o projeto
+A Aplicação consiste em uma API Rest, onde seja possível receber dados pessoais e realizar solicitações HTTP GET, POST, DELETE e PATCH.
+
+## Tecnologias utilizadas
+- Java 
+- Spring Boot
+- JPA / Hibernate
+- Maven
+
+## Autor
+Diego da Silva Santana
+
